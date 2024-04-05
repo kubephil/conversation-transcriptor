@@ -30,6 +30,8 @@ In order to use the click command app, the package needs to be installed locally
 
 ```
 pip install --editable .
+pip install -r requirements.txt 
+brew install ffmpeg
 ```
 
 

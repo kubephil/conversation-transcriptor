@@ -3,7 +3,8 @@ from dotenv import load_dotenv
 from pyannote.audio import Pipeline
 import pandas as pd
 import numpy as np
-#
+import torch
+
 
 def get_pyannote_access_token(dotenv_path):
 
@@ -14,8 +15,9 @@ def get_pyannote_access_token(dotenv_path):
 
 def appyl_pyannote_model(pyannote_token, fname):
     
-    pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization@2.1",
+    pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1",
                                         use_auth_token=pyannote_token)
+    pipeline.to(torch.device("mps"))
 
     # apply the pipeline to an audio file
     diarization = pipeline(fname)
